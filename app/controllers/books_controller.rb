@@ -6,7 +6,7 @@ class BooksController < ApplicationController
   end
 
   def prime
-  	books = Book.prime
+    books = Book.prime
     render json: books
   end
   

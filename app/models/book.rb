@@ -14,10 +14,10 @@ class Book < ActiveRecord::Base
     Publisher.where("name ~* ?", publisher_query).pluck(:id)) }
 
   scope :search_by_genre, -> (genre_query) { joins(:genres).where(genres_books: 
-    { genre_id: Genre.where("name ~* ?", genre_query).pluck(:id) }) }
+    { genre_id: Genre.by_name(genre_query).pluck(:id) }) }
 
   scope :search_by_author, -> (author_query) { joins(:authors).where(authors_books: 
-    { author_id: Author.where("name ~* ?", author_query).pluck(:id) }) }
+    { author_id: Author.by_name(author_query).pluck(:id) }) }
 
   private
 
