@@ -1,4 +1,4 @@
-class Book < ActiveRecord::Base
+class Book < ApplicationRecord
 
   require 'prime'
 
@@ -10,13 +10,13 @@ class Book < ActiveRecord::Base
   scope :prime,     -> { where("length(name) IN (#{prime_array})") }
   scope :available, -> { where(available: true) }
   scope :search_by_name, -> (name_query) { where("name ~* ?", name_query) }
-  scope :search_by_publisher, -> (publisher_query) { where(publisher_id: 
+  scope :search_by_publisher, -> (publisher_query) { where(publisher_id:
     Publisher.where("name ~* ?", publisher_query).pluck(:id)) }
 
-  scope :search_by_genre, -> (genre_query) { joins(:genres).where(genres_books: 
+  scope :search_by_genre, -> (genre_query) { joins(:genres).where(genres_books:
     { genre_id: Genre.by_name(genre_query).pluck(:id) }) }
 
-  scope :search_by_author, -> (author_query) { joins(:authors).where(authors_books: 
+  scope :search_by_author, -> (author_query) { joins(:authors).where(authors_books:
     { author_id: Author.by_name(author_query).pluck(:id) }) }
 
   private

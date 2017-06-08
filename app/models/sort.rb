@@ -1,6 +1,6 @@
-class Sort < ActiveRecord::Base
+class Sort < ApplicationRecord
 
   belongs_to :book
   belongs_to :list
-  
+
 end
