@@ -9,7 +9,7 @@ class Book < ApplicationRecord
 
   has_many :sorts
 
-  scope :prime,     -> { where("length(name) IN (#{prime_array})") }
+  scope :prime,     -> { where('LENGTH(name) IN (?)', prime_array) }
 
   scope :available, -> { where(available: true) }
 
@@ -24,15 +24,17 @@ class Book < ApplicationRecord
   private
 
   def self.name_max_length
-    order('length(name) DESC').first.name.size
+    maximum(:name)&.size.to_i + 1
   end
 
   def self.prime_array
     primes = []
-    (2...name_max_length+1).each do |num|
+
+    (2...name_max_length).each do |num|
       primes << num if Prime.prime?(num)
     end
-    primes.join(', ')
+
+    primes
   end
 
 end
