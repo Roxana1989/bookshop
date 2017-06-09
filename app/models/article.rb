@@ -3,6 +3,8 @@ class Article < ApplicationRecord
 
   has_and_belongs_to_many :genres
 
+  validates :name, presence: true
+
   scope :search_by_name, -> (name_query) { where 'name ~* ?', name_query }
 
   scope :search_by_genre, -> (genre_query) { joins(:genres).where 'genres.name ~* ?', genre_query }

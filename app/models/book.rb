@@ -19,6 +19,8 @@ class Book < ApplicationRecord
 
   scope :search_by_author, -> (author_query) { joins(:authors).where 'authors.name ~* ?', author_query }
 
+  validates :publisher, presence: true
+
   before_save :setup_has_prime_length_of_name
 
   private
