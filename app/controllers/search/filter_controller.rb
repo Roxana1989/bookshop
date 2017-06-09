@@ -1,6 +1,6 @@
-class SearchController < ApplicationController
+class Search::FilterController < BaseController
   def index
-    if Article.respond_to? method_name && Book.respond_to? method_name
+    if Article.respond_to?(method_name) && Book.respond_to?(method_name)
       articles = Article.send method_name, params[:query]
 
       books    = Book.send    method_name, params[:query]
