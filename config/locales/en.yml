@@ -21,3 +21,6 @@
 
 en:
   hello: "Hello world"
+  errors:
+    search:
+      wrong_parameters: "You should pass query option `parameter`, like author, genre, name or publisher."

@@ -1,8 +1,7 @@
 class ListsController < ApplicationController
+  def index
+    lists = Sort.with_discount_list.order(:position).limit 5
 
-  def index 
-    lists = Sort.where(list_id: List.discount.pluck(:id)).order(:position).limit(5)
     render json: lists
   end
-
 end
