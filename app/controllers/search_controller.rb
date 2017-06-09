@@ -1,25 +1,18 @@
 class SearchController < ApplicationController
-
-  PARAMETERS = ["name", "author", "genre", "publisher"]
-
   def index
-    parameter = params[:parameter]
-    check_parameters(parameter, params[:query])
-    method_name = "search_by_#{parameter}"
-    articles = Article.send(method_name, params[:query])
-    books = Book.send(method_name, params[:query])
-    render json: {articles: articles, 
-                  books:    books}
-  rescue ArgumentError => error
-    render status: 400, json: { error: error }
+    if Article.respond_to? method_name && Book.respond_to? method_name
+      articles = Article.send method_name, params[:query]
+
+      books    = Book.send    method_name, params[:query]
+
+      render json: { articles: articles, books: books }
+    else
+      render json: { error: I18n.t('errors.search.wrong_parameters') }, status: 400
+    end
   end
 
   private
-  
-  def check_parameters(parameter, query)
-    raise ArgumentError.new("You should pass parameters") unless (parameter && query)
-    raise ArgumentError.new("Parameter should be one of #{PARAMETERS}") unless 
-      PARAMETERS.include?(parameter)
+  def method_name
+    @method_name ||= "search_by_#{ params[:parameter] }"
   end
-
 end
