@@ -10,4 +10,5 @@ class Article < ApplicationRecord
   scope :search_by_author,    -> (query) { joins(:authors).where 'authors.name ~* ?', query }
 
   scope :search_by_publisher, -> (query) { none } # This column doesn't exist in articles
+
 end
