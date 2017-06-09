@@ -1,19 +1,17 @@
 class Book < ApplicationRecord
-
-  require 'prime'
-
-  has_and_belongs_to_many :authors
-  has_and_belongs_to_many :genres
-
   belongs_to :publisher
 
   has_many :sorts
 
-  scope :prime,     -> { where('LENGTH(name) IN (?)', prime_array) }
+  has_and_belongs_to_many :authors
 
-  scope :available, -> { where(available: true) }
+  has_and_belongs_to_many :genres
 
-  scope :search_by_name, -> (name_query) { where("name ~* ?", name_query) }
+  scope :prime,     -> { where has_prime_length_of_name: true }
+
+  scope :available, -> { where available: true }
+
+  scope :search_by_name, -> (name_query) { where "name ~* ?", name_query }
 
   scope :search_by_publisher, -> (publisher_query) { joins(:publisher).where 'publishers.name ~* ?', publisher_query }
 
@@ -21,20 +19,11 @@ class Book < ApplicationRecord
 
   scope :search_by_author, -> (author_query) { joins(:authors).where 'authors.name ~* ?', author_query }
 
+  before_save :setup_has_prime_length_of_name
+
   private
 
-  def self.name_max_length
-    maximum(:name)&.size.to_i + 1
+  def setup_has_prime_length_of_name
+    self.has_prime_length_of_name = Prime.prime? name.to_s.size
   end
-
-  def self.prime_array
-    primes = []
-
-    (2...name_max_length).each do |num|
-      primes << num if Prime.prime?(num)
-    end
-
-    primes
-  end
-
 end
