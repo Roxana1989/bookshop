@@ -11,13 +11,13 @@ class Book < ApplicationRecord
 
   scope :available, -> { where available: true }
 
-  scope :search_by_name, -> (name_query) { where "name ~* ?", name_query }
+  scope :search_by_name,      -> (name_query)      { where "name ~* ?", name_query }
 
   scope :search_by_publisher, -> (publisher_query) { joins(:publisher).where 'publishers.name ~* ?', publisher_query }
 
-  scope :search_by_genre, -> (genre_query) { joins(:genres).where 'genres.name ~* ?', genre_query }
+  scope :search_by_genre,     -> (genre_query)     { joins(:genres)   .where 'genres.name ~* ?',     genre_query }
 
-  scope :search_by_author, -> (author_query) { joins(:authors).where 'authors.name ~* ?', author_query }
+  scope :search_by_author,    -> (author_query)    { joins(:authors)  .where 'authors.name ~* ?',    author_query }
 
   before_save :setup_has_prime_length_of_name
 
