@@ -11,7 +11,7 @@ describe BaseController do
     describe 'format wasnt specified' do
       before { expect(controller).to receive_message_chain(:params, :[]).with(no_args).with(:format).and_return nil }
 
-      before { expect(controller).to receive_message_chain(:request, :format=).with :json }
+      before { expect(controller).to receive_message_chain(:request, :format=).with(no_args).with :json }
 
       it { expect { controller.send :setup_default_format }.to_not raise_error }
     end
