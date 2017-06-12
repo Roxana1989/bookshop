@@ -8,3 +8,7 @@ default: &default
 development:
   <<: *default
   database: bookshop_development
+
+test:
+  adapter: sqlite3
+  database: db/test.sqlite3
