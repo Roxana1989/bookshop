@@ -1,0 +1,11 @@
+language: ruby
+sudo: false
+cache: bundler
+
+rvm:
+  - 2.4.1
+  - ruby-head
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
