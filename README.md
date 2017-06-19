@@ -1,4 +1,4 @@
-[![TravisCI Build Status](https://travis-ci.org/DmytroStepaniuk/bookshop.svg?branch=master)](http://travis-ci.org/DmytroStepaniuk/bookshop)
+[![Build Status](https://travis-ci.org/DmytroStepaniuk/bookshop.svg?branch=master)](https://travis-ci.org/DmytroStepaniuk/bookshop)
 
 # Bookshop test task
 
