@@ -1,3 +1,5 @@
+[![TravisCI Build Status](https://travis-ci.org/DmytroStepaniuk/draper.svg?branch=master)](http://travis-ci.org/DmytroStepaniuk/draper)
+
 # Bookshop test task
 
 ## Clone project
