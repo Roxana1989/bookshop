@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/DmytroStepaniuk/bookshop.svg?branch=master)](https://travis-ci.org/DmytroStepaniuk/bookshop)
+
 # Bookshop test task
 
 ## Clone project
