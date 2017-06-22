@@ -4,6 +4,6 @@ class Article < ApplicationRecord
 
   has_and_belongs_to_many :genres
 
-  scope :search_by_publisher, -> (query) { none } # This column doesn't exist in articles
+  scope :search_by_publisher, Proc.new { none } # This column doesn't exist in articles
 
 end
