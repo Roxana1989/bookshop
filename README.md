@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/DmytroStepaniuk/bookshop.svg?branch=master)](https://travis-ci.org/DmytroStepaniuk/bookshop)
+[![CodeClimate](https://codeclimate.com/github/DmytroStepaniuk/bookshop.svg?branch=master)](https://codeclimate.com/github/DmytroStepaniuk/bookshop)
 
 # Bookshop test task
 
